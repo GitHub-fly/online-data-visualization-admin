@@ -1,0 +1,35 @@
+# 应用名称
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  application:
+    name: online-data-visualization-admin
+  # 数据库驱动：
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据库连接地址
+    url: jdbc:mysql://localhost:3306/db_online_data_visualization?serverTimezone=UTC
+    username: root
+    password: root
+    hikari:
+      max-lifetime: 30000
+      minimum-idle: 1
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 10000
+      connection-timeout: 30000
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    database: mysql
+    show-sql: true
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: off
+
+# 应用服务 WEB 访问端口
+server:
+  port: 5555
+
