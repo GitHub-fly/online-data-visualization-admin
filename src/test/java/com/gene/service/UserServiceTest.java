@@ -21,4 +21,9 @@ class UserServiceTest {
                 .password("123122123")
                 .build()));
     }
+
+    @Test
+    void getAllUser() {
+        userService.getAllUser().forEach(System.out::println);
+    }
 }

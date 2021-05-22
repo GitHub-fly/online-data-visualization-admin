@@ -31,8 +31,16 @@ public class UserController {
 
     @PostMapping("/login")
     @ControllerWebLog(name = "userLogin", isSaved = true)
-    @ApiOperation(value = "用户登录", notes = "注释")
+    @ApiOperation(value = "用户登录", notes = "用户登录接口")
     User userLogin(@RequestBody LoginDto loginDto) {
         return userService.login(loginDto);
+    }
+
+
+    @PostMapping("/allUserInfo")
+    @ControllerWebLog(name = "allUserInfo", isSaved = true)
+    @ApiOperation(value = "查询所有用户信息", notes = "查询所有用户信息接口")
+    List<User> allUser() {
+        return userService.getAllUser();
     }
 }
