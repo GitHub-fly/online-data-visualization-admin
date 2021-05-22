@@ -1,18 +1,19 @@
 package com.gene.controller;
 
 import com.gene.annotation.ControllerWebLog;
+import com.gene.model.dto.AdminDto;
 import com.gene.model.dto.LoginDto;
 import com.gene.model.entity.User;
-import com.gene.repository.UserRepository;
 import com.gene.service.UserService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @Author xunmi
@@ -42,5 +43,19 @@ public class UserController {
     @ApiOperation(value = "查询所有用户信息", notes = "查询所有用户信息接口")
     List<User> allUser() {
         return userService.getAllUser();
+    }
+
+    @PostMapping("/addAdmin")
+    @ControllerWebLog(name = "addAdmin", isSaved = true)
+    @ApiOperation(value = "新增管理员", notes = "新增管理员")
+    User addAdmin(@RequestBody AdminDto adminDto) {
+        return userService.addAdmin(adminDto);
+    }
+
+    @PostMapping("/updateInfo")
+    @ControllerWebLog(name = "updateInfo", isSaved = true)
+    @ApiOperation(value = "修改用户信息", notes = "修改用户信息")
+    User updateInfo(@RequestBody User user) {
+        return userService.updateUserInfo(user);
     }
 }

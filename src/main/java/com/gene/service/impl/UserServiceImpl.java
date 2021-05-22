@@ -2,6 +2,7 @@ package com.gene.service.impl;
 
 import com.gene.constant.ResultCode;
 import com.gene.exception.CustomException;
+import com.gene.model.dto.AdminDto;
 import com.gene.model.dto.LoginDto;
 import com.gene.model.entity.User;
 import com.gene.repository.UserRepository;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +48,7 @@ public class UserServiceImpl implements UserService {
           2. 如果用户存在则继续判断密码是否正确
          */
         if (tarUser.getPassword().equals(Md5Util.getMd5(loginDto.getPassword(), true, 32))) {
-            tarUser.setPassword("");
+
             return tarUser;
         } else {
             throw new CustomException("密码错误", ResultCode.USER_PASSWORD_ERROR);
@@ -61,5 +64,33 @@ public class UserServiceImpl implements UserService {
             userList.forEach(user -> user.setPassword(""));
             return userList;
         }
+    }
+
+    @Override
+    public User addAdmin(AdminDto adminDto) {
+        User user = User.builder()
+                .avatar(adminDto.getAvatar())
+                .account(adminDto.getAccount())
+                .nickname(adminDto.getNickname())
+                .password(adminDto.getPassword())
+                .roleId(2)
+                .createTime(Timestamp.valueOf(LocalDateTime.now()))
+                .updateTime(Timestamp.valueOf(LocalDateTime.now()))
+                .build();
+        if (userRepository.findByAccount(adminDto.getAccount()).size() == 0) {
+            return userRepository.saveAndFlush(user);
+        } else {
+            throw new CustomException("用户已经存在", ResultCode.USER_IS_EXIST);
+        }
+    }
+
+    @Override
+    public User updateUserInfo(User user) {
+        if (userRepository.findByAccount(user.getAccount()).size() == 1) {
+            return userRepository.saveAndFlush(user);
+        } else {
+            throw new CustomException("信息修改失败", ResultCode.USER_XIU_USER_CODE);
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.gene.service;
 
+import com.gene.model.dto.AdminDto;
 import com.gene.model.dto.LoginDto;
 import com.gene.model.entity.User;
 
@@ -28,4 +29,17 @@ public interface UserService {
      * @return List<user>
      */
     List<User> getAllUser();
+
+    /**
+     * 新增管理员
+     */
+    User addAdmin(AdminDto adminDto);
+
+    /**
+     * 修改用户信息
+     *
+     * @param user
+     * @return
+     */
+    User updateUserInfo(User user);
 }

@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -29,6 +29,7 @@ public class User {
      * 用户id
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
     /**
@@ -59,21 +60,31 @@ public class User {
     /**
      * 是否登录
      */
-    private Boolean isLogin;
+    private Integer isLogin;
 
     /**
      * 是否被删除
      */
-    private Boolean isDisabled;
+    private Integer isDisabled;
+    /**
+     * 性别
+     */
+    private String sex;
+    /**
+     * 居住地
+     */
+    private String hometown;
 
     /**
      * 创建时间
      */
+    @CreatedDate
     private Timestamp createTime;
 
     /**
      * 更新时间
      */
+    @LastModifiedDate
     private Timestamp updateTime;
 
 }
