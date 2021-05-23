@@ -4,17 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * @Author xunmi
- * @ClassName User
+ * @ClassName DataType
  * @Description TODO
- * @Date 2021/5/20
+ * @Date 2021/5/22
  * @Version 1.0.0
  */
 @Entity
@@ -22,44 +23,25 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "t_user")
-public class User {
+@Table(name = "t_datatype")
+public class DataType {
 
     /**
-     * 用户id
+     * 接入数据类型id
      */
     @Id
-    private Integer userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     /**
-     * 账号
+     * 接入源封面图
      */
-    private String account;
+    private String cover;
 
     /**
-     * 密码
+     * 接入源名称
      */
-    private String password;
-
-    /**
-     * 头像
-     */
-    private String avatar;
-
-    /**
-     * 昵称
-     */
-    private String nickname;
-
-    /**
-     * 角色id
-     */
-    private Integer roleId;
-
-    /**
-     * 是否登录
-     */
-    private Boolean isLogin;
+    private String name;
 
     /**
      * 是否被删除
@@ -71,11 +53,13 @@ public class User {
     /**
      * 创建时间
      */
+    @CreatedDate
     private Timestamp createTime;
 
     /**
      * 更新时间
      */
+    @LastModifiedDate
     private Timestamp updateTime;
 
 }
