@@ -2,6 +2,7 @@ package com.gene.service;
 
 import com.gene.model.dto.AdminDto;
 import com.gene.model.dto.LoginDto;
+import com.gene.model.dto.UserBehaviorDto;
 import com.gene.model.entity.User;
 
 import java.util.List;
@@ -42,4 +43,22 @@ public interface UserService {
      * @return
      */
     User updateUserInfo(User user);
+
+    /**
+     * 获取用户上传基本信息
+     *
+     * @return
+     */
+    List<UserBehaviorDto> getUserBehavior();
+
+    /**
+     * 根据文件上传次数升序
+     * @return
+     */
+    List<UserBehaviorDto> orderByFileNumber();
+    /**
+     * 根据数据库连接次数升序
+     * @return
+     */
+    List<UserBehaviorDto> orderByConnNumber();
 }

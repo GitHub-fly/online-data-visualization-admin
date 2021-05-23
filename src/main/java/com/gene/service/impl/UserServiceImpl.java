@@ -4,6 +4,7 @@ import com.gene.constant.ResultCode;
 import com.gene.exception.CustomException;
 import com.gene.model.dto.AdminDto;
 import com.gene.model.dto.LoginDto;
+import com.gene.model.dto.UserBehaviorDto;
 import com.gene.model.entity.User;
 import com.gene.repository.UserRepository;
 import com.gene.service.UserService;
@@ -92,5 +93,20 @@ public class UserServiceImpl implements UserService {
             throw new CustomException("信息修改失败", ResultCode.USER_XIU_USER_CODE);
         }
 
+    }
+
+    @Override
+    public List<UserBehaviorDto> getUserBehavior() {
+        return userRepository.queryUserBehavior();
+    }
+
+    @Override
+    public List<UserBehaviorDto> orderByFileNumber() {
+        return userRepository.orderByFileNumber();
+    }
+
+    @Override
+    public List<UserBehaviorDto> orderByConnNumber() {
+        return userRepository.orderByConnNumber();
     }
 }

@@ -3,6 +3,7 @@ package com.gene.controller;
 import com.gene.annotation.ControllerWebLog;
 import com.gene.model.dto.AdminDto;
 import com.gene.model.dto.LoginDto;
+import com.gene.model.dto.UserBehaviorDto;
 import com.gene.model.entity.User;
 import com.gene.service.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -57,5 +58,24 @@ public class UserController {
     @ApiOperation(value = "修改用户信息", notes = "修改用户信息")
     User updateInfo(@RequestBody User user) {
         return userService.updateUserInfo(user);
+    }
+
+    @PostMapping("/getUserBehavior")
+    @ControllerWebLog(name = "getUserBehavior", isSaved = true)
+    @ApiOperation(value = "获取用户基本行为信息", notes = "获取用户基本行为信息")
+    List<UserBehaviorDto> getUserBehavior() {
+        return userService.getUserBehavior();
+    }
+    @PostMapping("/orderByFileNumber")
+    @ControllerWebLog(name = "orderByFileNumber", isSaved = true)
+    @ApiOperation(value = "根据用户上传文件数量降序排列", notes = "根据用户上传文件数量降序排列")
+    List<UserBehaviorDto> orderByFileNumber() {
+        return userService.orderByFileNumber();
+    }
+    @PostMapping("/orderByConnNumber")
+    @ControllerWebLog(name = "orderByConnNumber", isSaved = true)
+    @ApiOperation(value = "根据用户连接数据库次数降序排列", notes = "根据用户连接数据库次数降序排列")
+    List<UserBehaviorDto> orderByConnNumber() {
+        return userService.orderByConnNumber();
     }
 }
