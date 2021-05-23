@@ -12,9 +12,9 @@ import java.sql.Timestamp;
 
 /**
  * @Author xunmi
- * @ClassName User
+ * @ClassName Recode
  * @Description TODO
- * @Date 2021/5/20
+ * @Date 2021/5/23
  * @Version 1.0.0
  */
 @Entity
@@ -22,45 +22,38 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "t_user")
-public class User {
-
+@Table(name = "t_record")
+public class Record {
     /**
-     * 用户id
+     * id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    /**
+     * 用户 id
+     */
     private Integer userId;
 
     /**
-     * 账号
+     * 父级 id
      */
-    private String account;
+    private Integer parentId;
+
 
     /**
-     * 密码
+     * 名字
      */
-    private String password;
+    private String name;
 
     /**
-     * 头像
+     * 文件上传类型
+     * 0 -> csv
+     * 1 -> excel
+     * 2 -> 数据库表
      */
-    private String avatar;
-
-    /**
-     * 昵称
-     */
-    private String nickname;
-
-    /**
-     * 角色id
-     */
-    private Integer roleId;
-
-    /**
-     * 是否登录
-     */
-    private Integer isLogin;
+    private Integer uploadType;
 
     /**
      * 是否被删除
@@ -68,16 +61,6 @@ public class User {
      * 1 -> 未删除
      */
     private Integer isDisabled;
-
-    /**
-     * 性别
-     */
-    private String sex;
-    /**
-     * 居住地
-     */
-    private String hometown;
-
 
     /**
      * 创建时间
@@ -90,5 +73,4 @@ public class User {
      */
     @LastModifiedDate
     private Timestamp updateTime;
-
 }

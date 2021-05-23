@@ -9,12 +9,13 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * @Author xunmi
- * @ClassName User
+ * @ClassName DataType
  * @Description TODO
- * @Date 2021/5/20
+ * @Date 2021/5/22
  * @Version 1.0.0
  */
 @Entity
@@ -22,45 +23,25 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "t_user")
-public class User {
+@Table(name = "t_datatype")
+public class DataType {
 
     /**
-     * 用户id
+     * 接入数据类型id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Integer id;
 
     /**
-     * 账号
+     * 接入源封面图
      */
-    private String account;
+    private String cover;
 
     /**
-     * 密码
+     * 接入源名称
      */
-    private String password;
-
-    /**
-     * 头像
-     */
-    private String avatar;
-
-    /**
-     * 昵称
-     */
-    private String nickname;
-
-    /**
-     * 角色id
-     */
-    private Integer roleId;
-
-    /**
-     * 是否登录
-     */
-    private Integer isLogin;
+    private String name;
 
     /**
      * 是否被删除
@@ -68,16 +49,6 @@ public class User {
      * 1 -> 未删除
      */
     private Integer isDisabled;
-
-    /**
-     * 性别
-     */
-    private String sex;
-    /**
-     * 居住地
-     */
-    private String hometown;
-
 
     /**
      * 创建时间
