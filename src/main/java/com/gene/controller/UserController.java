@@ -66,12 +66,14 @@ public class UserController {
     List<UserBehaviorDto> getUserBehavior() {
         return userService.getUserBehavior();
     }
+
     @PostMapping("/orderByFileNumber")
     @ControllerWebLog(name = "orderByFileNumber", isSaved = true)
     @ApiOperation(value = "根据用户上传文件数量降序排列", notes = "根据用户上传文件数量降序排列")
     List<UserBehaviorDto> orderByFileNumber() {
         return userService.orderByFileNumber();
     }
+
     @PostMapping("/orderByConnNumber")
     @ControllerWebLog(name = "orderByConnNumber", isSaved = true)
     @ApiOperation(value = "根据用户连接数据库次数降序排列", notes = "根据用户连接数据库次数降序排列")

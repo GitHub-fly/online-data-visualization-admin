@@ -2,16 +2,16 @@
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
+    time-zone: GMT-8
   application:
     name: online-data-visualization-admin
   # 数据库驱动：
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 数据库连接地址
-    url: jdbc:mysql://localhost:3306/db_online_data_visualization?serverTimezone=UTC
-    username: root
-    password: root
+    url: jdbc:mysql://rm-bp1itj68te5655569ro.mysql.rds.aliyuncs.com:3306/db_online_data_visualization
+    username: xiaowo_root
+    password: Xiaowo_mysql
     hikari:
       max-lifetime: 30000
       minimum-idle: 1

@@ -43,11 +43,11 @@ public class DataTypeController {
         return dataService.addDataTypeInfo(dataType);
     }
 
-    @PostMapping("/updateInfo")
+
+    @PostMapping("/updateDataTypeInfo")
     @ControllerWebLog(name = "updateInfo", isSaved = true)
     @ApiOperation(value = "修改新增数据接入类型", notes = "修改新增数据接入类型接口")
-    DataType updateInfo(@RequestBody DataType dataType) {
-        System.out.println("==================" + dataType);
+    DataType update(@RequestBody DataType dataType) {
         return dataService.updateInfo(dataType);
 
     }
